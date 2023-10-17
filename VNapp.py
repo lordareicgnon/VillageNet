@@ -55,7 +55,7 @@ if runmapperplus:
         file_name='PenDigits.csv'
         #data = load_wine()['data']
         data = load_digits()['data']
-    if uploaded_file or Wine_data:
+    if uploaded_file or Sample_data:
         normalize = st.checkbox(
             "Normalize Data", True, help="Normalize Data using standard method")
         if normalize:
