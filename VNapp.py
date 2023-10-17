@@ -10,7 +10,7 @@ from sklearn.datasets import load_digits
 
 run=0
 st.write("""
-# VillageNet Ⓒ \n
+# VillageNet Clustering Ⓒ \n
 2023 Aditya Ballal, Gregory DePaul, Esha Datta & Leighton T. Izu
 """)
 
