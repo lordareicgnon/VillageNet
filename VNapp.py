@@ -73,7 +73,7 @@ if runmapperplus:
         #new_method=st.checkbox('Use new method',False)
         with st.form(key="my_form"):
 
-            run=st.form_submit_button(label="Run VillageNet")
+            run=st.form_submit_button(label="Cluster")
 if run:
     #st.stop()
     model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=0)
