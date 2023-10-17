@@ -18,7 +18,7 @@ st.write("""
 
 with st.expander("More Information"):
     st.write("""
-    We present ”Village-Net Clustering,” a novel unsupervised clustering algorithm
+    We present ”VillageNet Clustering,” a novel unsupervised clustering algorithm
     designed for effectively clustering complex manifold data.
     """)
 
