@@ -64,7 +64,7 @@ if runmapperplus:
             X=data
     #submit=False
     #with st.form("parameters"):
-    if uploaded_file or Wine_data:
+    if uploaded_file or Sample_data:
         st.markdown("## Hyper Parameters")
 
         cols = st.columns((1, 1))
