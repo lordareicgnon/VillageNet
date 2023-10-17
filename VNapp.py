@@ -57,7 +57,7 @@ if runmapperplus:
         data = load_digits()['data']
     if uploaded_file or Sample_data:
         normalize = st.checkbox(
-            "Normalize Data", True, help="Normalize Data using standard method")
+            "Normalize Data", False, help="Normalize Data using standard method")
         if normalize:
             X=(data-np.mean(data,axis=0))/np.std(data,axis=0)
         else:
