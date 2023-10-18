@@ -58,10 +58,7 @@ if runmapperplus:
     if uploaded_file or Sample_data:
         normalize = st.checkbox(
             "Normalize Data", False, help="Normalize Data using standard method")
-        if normalize:
-            X=(data-np.mean(data,axis=0))/np.std(data,axis=0)
-        else:
-            X=data
+        X=data
     #submit=False
     #with st.form("parameters"):
     if uploaded_file or Sample_data:
@@ -76,7 +73,7 @@ if runmapperplus:
             run=st.form_submit_button(label="Cluster")
 if run:
     #st.stop()
-    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=0)
+    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize)
     model.fit(X)
     U=np.zeros((X.shape[0],max(model.comm_id)+1))
     U[range(X.shape[0]),model.comm_id]=1
