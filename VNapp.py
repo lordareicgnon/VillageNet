@@ -72,8 +72,6 @@ if runmapperplus:
 
             run=st.form_submit_button(label="Cluster")
 if run:
-    #st.stop()
-    st.write(normalize)
     model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize)
     model.fit(X)
     U=np.zeros((X.shape[0],max(model.comm_id)+1))
