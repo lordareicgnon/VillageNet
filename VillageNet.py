@@ -67,11 +67,11 @@ class VillageNet():
         np.fill_diagonal(self.distance_matrix,10000000000000000)
         self.U=np.zeros((self.N,self.villages))
         self.U[range(self.N),self.labels]=1
-        self.D=(self.ds-self.ds[range(self.N),self.labels][:,None])/self.distance_matrix[self.labels,:]
-        #Xv=self.X.dot(self.cluster_centers.T)
-        #v=self.cluster_centers.dot(self.cluster_centers.T)
-        #self.D = (-Xv+Xv[range(self.N),self.labels][:,None]+np.diagonal(v)-v[self.labels,:])/self.distance_matrix[self.labels,:]
-        #self.D = self.D - self.distance_matrix[self.labels,:]/2
+        #self.D=(self.ds-self.ds[range(self.N),self.labels][:,None])/self.distance_matrix[self.labels,:]
+        Xv=self.X.dot(self.cluster_centers.T)
+        v=self.cluster_centers.dot(self.cluster_centers.T)
+        self.D = (-Xv+Xv[range(self.N),self.labels][:,None]+np.diagonal(v)-v[self.labels,:])/self.distance_matrix[self.labels,:]
+        self.D = self.D - self.distance_matrix[self.labels,:]/2
         self.D[range(self.N),self.labels[range(self.N)]]=10000000000000000
 
 
