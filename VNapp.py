@@ -6,6 +6,7 @@ import importlib
 import walk_likelihood as wl
 import VillageNet as VN
 from sklearn.datasets import load_digits
+import pandas as pd
 
 
 run=0
@@ -35,7 +36,7 @@ if runmapperplus:
     see_results=0
     uploaded_file='False'
     with st.expander("ℹ️ More information"):
-        st.write("Upload data in CSV format with no headers.")
+        st.write("Upload data in CSV format.")
     #with st.sidebar:
     Sample_data = st.checkbox(
         "Use Sample Data", False, help="Pen Digits Dataset")
@@ -44,11 +45,17 @@ if runmapperplus:
     if not Sample_data:
 
 
-        uploaded_file = st.file_uploader("Upload CSV", type=".csv")
-        #st.write(uploaded_file)
-        if uploaded_file:
-            data = np.loadtxt(uploaded_file, delimiter=',')
-            file_name=uploaded_file.name
+        head=st.checkbox("Contains headers", False)
+        if head:
+            df=pd.read_csv(uploaded_file)
+        else:
+            df=pd.read_csv(uploaded_file,header=None)
+
+        st.write('### Data Uploaded')
+
+        st.write(df)
+        data=np.array(df)
+        file_name=uploaded_file.name
 
     else:
         #from sklearn.datasets import load_wine
