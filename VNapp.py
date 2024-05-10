@@ -43,19 +43,21 @@ if runmapperplus:
 
 
     if not Sample_data:
-
-
-        head=st.checkbox("Contains headers", False)
-        if head:
-            df=pd.read_csv(uploaded_file)
-        else:
-            df=pd.read_csv(uploaded_file,header=None)
-
-        st.write('### Data Uploaded')
-
-        st.write(df)
-        data=np.array(df)
-        file_name=uploaded_file.name
+        uploaded_file = st.file_uploader("Upload CSV", type=".csv")
+        #st.write(uploaded_file)
+        if uploaded_file:
+            
+            head=st.checkbox("Contains headers", False)
+            if head:
+                df=pd.read_csv(uploaded_file)
+            else:
+                df=pd.read_csv(uploaded_file,header=None)
+    
+            st.write('### Data Uploaded')
+    
+            st.write(df)
+            data=np.array(df)
+            file_name=uploaded_file.name
 
     else:
         #from sklearn.datasets import load_wine
