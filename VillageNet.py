@@ -38,7 +38,7 @@ class VillageNet():
         self.villages=villages
         self.neighbors=neighbors
 
-    def fit(self,X,ref=None):
+    def fit(self,X,comms=None,ref=None):
         self.X=X
         self.N=len(self.X)
         if self.normalize:
@@ -50,7 +50,7 @@ class VillageNet():
         self.grapher()
         t3=time()
         print('time='+str(t3-t2))
-        self.get_communities()
+        self.get_communities(comms=comms)
         print('time='+str(time()-t3))
         if ref is not None:
             print(nmi(ref,self.comm_id))
@@ -87,7 +87,7 @@ class VillageNet():
                 vl.append(arg[j])
             self.village_list.append(vl)
 
-    def get_communities(self,thr_clusters=128,**WLCF_args):
+    def get_communities(self,thr_clusters=128,comms=None,**WLCF_args):
         self.A=(self.M.T).dot(self.U)
         self.A=self.A+self.A.T
 
@@ -99,7 +99,7 @@ class VillageNet():
             model.WLM(init=U,l_max=2,**WLCF_args)
 
         else:
-            model.WLM(**WLCF_args)
+            model.WLM(comms=comms,**WLCF_args)
         self.comm_id=model.comm_id[self.labels]
 
         return model
