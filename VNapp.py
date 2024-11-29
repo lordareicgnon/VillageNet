@@ -87,8 +87,8 @@ if runmapperplus:
 
             run=st.form_submit_button(label="Cluster")
 if run:
-    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize,comms=comms)
-    model.fit(X)
+    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize)
+    model.fit(X,comms=comms)
     U=np.zeros((X.shape[0],max(model.comm_id)+1))
     U[range(X.shape[0]),model.comm_id]=1
     for i in range(max(model.comm_id)+1):
