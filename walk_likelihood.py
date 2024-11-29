@@ -126,7 +126,7 @@ class walk_likelihood:
                 break                           #convergence criterea
         self.find_communities()
 
-    def WLM(self,max_iter_WLCF=20,U=None,thr_WLCF=0.99,bifuraction_type='random',modularity_tolerance=0.1,**WLA_params):
+    def WLM(self,comms=None,**WLA_params):
         if U is None:
             self.U=np.zeros((self.N,self.N)) #initializing U with the whole as a single community
             np.fill_diagonal(self.U,1)
@@ -139,7 +139,10 @@ class walk_likelihood:
         merge=1
         while(merge):
             self.WLA(U=self.U, WLCF_call=1,**WLA_params)
-            merge=self.merge_communities()
+            if comms is None:
+                merge=self.merge_communities()
+            else:
+                merge=self.merge_communities(min_comms=comms,max_comms=comms)
         self.find_communities()
 
     def find_communities(self):
