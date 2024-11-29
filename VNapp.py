@@ -74,7 +74,7 @@ if runmapperplus:
         st.markdown("## Hyper Parameters")
 
         cols = st.columns((1, 1))
-        villages = cols[0].number_input('Number of villages',min_value=1, max_value=data.shape[0],step=1,value=np.minimum(200,X.shape[0]))
+        villages = cols[0].number_input('Number of villages',min_value=2, max_value=data.shape[0],step=1,value=np.minimum(200,X.shape[0]))
         neighbors = cols[1].number_input('Number of nearest neighbors',min_value=1, max_value=data.shape[0],step=1,value=np.minimum(20,X.shape[0]))
         #new_method=st.checkbox('Use new method',False)
         with st.form(key="my_form"):
