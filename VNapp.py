@@ -93,7 +93,7 @@ if run:
     U[range(X.shape[0]),model.comm_id]=1
     for i in range(max(model.comm_id)+1):
         arr=np.array(range(X.shape[0]))[U[:,i]==1]
-        strng=arr[0]
+        strng=str(arr[0])
         for j in arr[1:]:
             strng=strng+', '+str(j)
         with st.expander("Cluster "+str(i)):            
