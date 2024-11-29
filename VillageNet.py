@@ -96,7 +96,7 @@ class VillageNet():
         if self.villages>thr_clusters:
 
             U=np.random.random((self.villages,thr_clusters))
-            model.WLM(init=U,l_max=8,comms=comms,**WLCF_args)
+            model.WLM(U=U,l_max=8,comms=comms,**WLCF_args)
 
         else:
             model.WLM(comms=comms,**WLCF_args)
