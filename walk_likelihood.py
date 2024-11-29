@@ -126,7 +126,7 @@ class walk_likelihood:
                 break                           #convergence criterea
         self.find_communities()
 
-    def WLM(self,comms=None,**WLA_params):
+    def WLM(self,U=None,comms=None,**WLA_params):
         if U is None:
             self.U=np.zeros((self.N,self.N)) #initializing U with the whole as a single community
             np.fill_diagonal(self.U,1)
