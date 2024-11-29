@@ -76,12 +76,18 @@ if runmapperplus:
         cols = st.columns((1, 1))
         villages = cols[0].number_input('Number of villages',min_value=2, max_value=data.shape[0],step=1,value=np.minimum(200,X.shape[0]))
         neighbors = cols[1].number_input('Number of nearest neighbors',min_value=1, max_value=data.shape[0],step=1,value=np.minimum(20,X.shape[0]))
+        num_comms=st.checkbox("Set number of clusters", False)
+        if num_comms:
+            cols2 = st.columns(1)
+            comms = cols2[0].number_input('Number of clusters',min_value=2, max_value=data.shape[0],step=1,value=np.minimum(3,X.shape[0]))
+        else:
+            comms=None
         #new_method=st.checkbox('Use new method',False)
         with st.form(key="my_form"):
 
             run=st.form_submit_button(label="Cluster")
 if run:
-    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize)
+    model=VN.VillageNet(villages=villages,neighbors=neighbors,normalize=normalize,comms=comms)
     model.fit(X)
     U=np.zeros((X.shape[0],max(model.comm_id)+1))
     U[range(X.shape[0]),model.comm_id]=1
