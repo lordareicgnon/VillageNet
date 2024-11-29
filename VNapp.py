@@ -9,6 +9,27 @@ from sklearn.datasets import load_digits
 import pandas as pd
 
 
+def KP_Survival(date,event_yes):
+    N=len(date)
+    date[np.isnan(date)]=0
+    event_yes[np.isnan(event_yes)]=0
+    inds=np.argsort(date)
+    tms=[0]
+    S=[1]
+    s=1
+    N_pop=len(date)
+    for i in inds:
+        if event_yes[i]>0:
+            tms.append(date[i])
+            S.append(s)
+            s=s*(N_pop-1)/N_pop
+            tms.append(date[i])
+            S.append(s)
+        N_pop=N_pop-1    
+    
+    return [tms,S]    
+
+
 run=0
 st.write("""
 # VillageNet Clustering Ⓒ \n
@@ -58,6 +79,9 @@ if runmapperplus:
             st.write(df)
             data=np.array(df)
             file_name=uploaded_file.name
+            
+            KM_data = st.checkbox("KP Analysis", False)
+
 
     else:
         #from sklearn.datasets import load_wine
