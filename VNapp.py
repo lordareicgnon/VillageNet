@@ -43,10 +43,8 @@ y = np.sin(x)
 
 # Create a Matplotlib plot
 fig, ax = plt.subplots()
-ax.plot(x, y, label='Sine Wave')
-ax.set_title("Matplotlib Plot")
-ax.legend()
-
+ax.plot(x, y)
+ax.plot(x, y+1)
 # Display the plot in Streamlit
 st.pyplot(fig)
 
