@@ -150,15 +150,41 @@ if run:
         disjoint_str+=str(model.comm_id[i])+'\n'
     disjoint_str+=str(model.comm_id[X.shape[0]-1])
     download_button( disjoint_str,'disjoint_clusters_'+file_name,'Final Clusters')
+    
     KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as event & column 2 as time", type=".csv")
 
-    x = np.linspace(0, 10, 100)
-    y = np.sin(x)
+    if KM_file:
+        datacols2 = st.columns((1, 1, 1))
+        transpose2=datacols[0].checkbox("Transpose Data", False)
+        head2=datacols2[1].checkbox("Contains Headers", False)
+        ids2=datacols2[2].checkbox("Contains Indices", False)
+            
+        df2=pd.read_csv(KM_file,header=None)
+
+        if transpose:
+            df2=df2.T
+        if head:
+            df2 = df2.rename(columns=df.iloc[0]).drop(df.index[0])
+        if ids:
+            df2=df2.set_index(df.columns.tolist()[0])
+        st.write('### Data Uploaded')
     
-    # Create a Matplotlib plot
-    fig, ax = plt.subplots()
-    ax.plot(x, y)
-    ax.plot(x, y+1)
-    # Display the plot in Streamlit
-    st.pyplot(fig)
+        st.write(df2)
+        KMdata=np.array(df2)
+        run2=st.form_submit_button(label="Plot Kaplan Meier Curves")
+        if run2:
+            Ss=[]
+            tms=[]
+            fig, ax = plt.subplots()
+            for i in range(max(model.comm_id)+1):
+                [a,b]=KP_Survival(KMdata[model.comm_id==i,1],KMdata[model.comm_id==i,0])
+                print(len(a))
+                Ss.append(b)
+                tms.append(a)
+                ax.plot(tms[i],Ss[i],label="Community "+str(i))
+                ax.legend()
+                x = np.linspace(0, 10, 100)
+                y = np.sin(x)
+                
+            st.pyplot(fig)
 
