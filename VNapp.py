@@ -67,12 +67,33 @@ if runmapperplus:
         uploaded_file = st.file_uploader("Upload CSV", type=".csv")
         #st.write(uploaded_file)
         if uploaded_file:
+
+
+            datacols = st.columns((1, 1, 1))
+            transpose=datacols[0].checkbox("Transpose Data", False)
+            head=datacols[1].checkbox("Contains Headers", False)
+            ids=datacols[2].checkbox("Contains Indices", False)
             
-            head=st.checkbox("Contains headers", False)
+            
+
+            #if head:
+            #    df=pd.read_csv(uploaded_file)
+            #else:
+            #    df=pd.read_csv(uploaded_file,header=None)
+            df=pd.read_csv(uploaded_file,header=None)
+
+            if transpose:
+                df=df.T
             if head:
-                df=pd.read_csv(uploaded_file)
-            else:
-                df=pd.read_csv(uploaded_file,header=None)
+                df = df.rename(columns=df.iloc[0]).drop(df.index[0])
+            if ids:
+                df=df.set_index(df.columns.tolist()[0])
+
+            #head=st.checkbox("Contains headers", False)
+            #if head:
+            #    df=pd.read_csv(uploaded_file)
+            #else:
+            #    df=pd.read_csv(uploaded_file,header=None)
     
             st.write('### Data Uploaded')
     
