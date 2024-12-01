@@ -7,7 +7,7 @@ import walk_likelihood as wl
 import VillageNet as VN
 from sklearn.datasets import load_digits
 import pandas as pd
-
+import matplotlib.pyplot as plt
 
 def KP_Survival(date,event_yes):
     N=len(date)
@@ -37,6 +37,18 @@ st.write("""
 """)
 
 #more_information = st.checkbox("More Information", False)
+
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Create a Matplotlib plot
+fig, ax = plt.subplots()
+ax.plot(x, y, label='Sine Wave')
+ax.set_title("Matplotlib Plot")
+ax.legend()
+
+# Display the plot in Streamlit
+st.pyplot(fig)
 
 with st.expander("More Information"):
     st.write("""
