@@ -100,6 +100,7 @@ if runmapperplus:
             st.write(df)
             data=np.array(df)
             file_name=uploaded_file.name
+            st.write(data.dtype)
             
             
 
