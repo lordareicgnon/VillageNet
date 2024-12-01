@@ -158,7 +158,7 @@ if run:
     
     if KM_file:
         datacols2 = st.columns((1, 1, 1))
-        transpose2=datacols[0].checkbox("Transpose Data", False)
+        transpose2=datacols2[0].checkbox("Transpose Data", False)
         head2=datacols2[1].checkbox("Contains Headers", False)
         ids2=datacols2[2].checkbox("Contains Indices", False)
             
@@ -174,6 +174,7 @@ if run:
     
         st.write(df2)
         KMdata=np.array(df2)
+        KMdata=KMdata.astype(float)
         run2=st.form_submit_button(label="Plot Kaplan Meier Curves")
         if run2:
             Ss=[]
