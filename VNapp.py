@@ -38,16 +38,6 @@ st.write("""
 
 #more_information = st.checkbox("More Information", False)
 
-x = np.linspace(0, 10, 100)
-y = np.sin(x)
-
-# Create a Matplotlib plot
-fig, ax = plt.subplots()
-ax.plot(x, y)
-ax.plot(x, y+1)
-# Display the plot in Streamlit
-st.pyplot(fig)
-
 with st.expander("More Information"):
     st.write("""
     We present ”VillageNet Clustering,” a novel unsupervised clustering algorithm
@@ -111,8 +101,7 @@ if runmapperplus:
             data=np.array(df)
             file_name=uploaded_file.name
             
-            KM_data = st.checkbox("KP Analysis", False)
-
+            
 
     else:
         #from sklearn.datasets import load_wine
@@ -161,3 +150,15 @@ if run:
         disjoint_str+=str(model.comm_id[i])+'\n'
     disjoint_str+=str(model.comm_id[X.shape[0]-1])
     download_button( disjoint_str,'disjoint_clusters_'+file_name,'Final Clusters')
+    KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as event & column 2 as time", type=".csv")
+
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+    
+    # Create a Matplotlib plot
+    fig, ax = plt.subplots()
+    ax.plot(x, y)
+    ax.plot(x, y+1)
+    # Display the plot in Streamlit
+    st.pyplot(fig)
+
