@@ -116,6 +116,8 @@ if runmapperplus:
         X=data
     #submit=False
     #with st.form("parameters"):
+    KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as event & column 2 as time", type=".csv")
+
     if uploaded_file or Sample_data:
         st.markdown("## Hyper Parameters")
 
@@ -153,8 +155,7 @@ if run:
     disjoint_str+=str(model.comm_id[X.shape[0]-1])
     download_button( disjoint_str,'disjoint_clusters_'+file_name,'Final Clusters')
     
-    KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as event & column 2 as time", type=".csv")
-
+    
     if KM_file:
         datacols2 = st.columns((1, 1, 1))
         transpose2=datacols[0].checkbox("Transpose Data", False)
