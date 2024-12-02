@@ -125,11 +125,11 @@ if runmapperplus:
             
         df2=pd.read_csv(KM_file,header=None)
 
-        if transpose:
+        if transpose2:
             df2=df2.T
-        if head:
+        if head2:
             df2 = df2.rename(columns=df.iloc[0]).drop(df.index[0])
-        if ids:
+        if ids2:
             df2=df2.set_index(df.columns.tolist()[0])
         st.write('### Kapplan Meier Data Uploaded')
     
