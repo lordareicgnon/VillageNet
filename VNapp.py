@@ -119,9 +119,9 @@ if runmapperplus:
     KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as time & column 2 as event", type=".csv")
     if KM_file:
         datacols2 = st.columns((1, 1, 1))
-        transpose2=datacols2[0].checkbox("Transpose Data", False)
-        head2=datacols2[1].checkbox("Contains Headers", False)
-        ids2=datacols2[2].checkbox("Contains Indices", False)
+        transpose2=datacols2[0].checkbox("Transpose KM Data", False)
+        head2=datacols2[1].checkbox("Contains KM Headers", False)
+        ids2=datacols2[2].checkbox("Contains KM Indices", False)
             
         df2=pd.read_csv(KM_file,header=None)
 
