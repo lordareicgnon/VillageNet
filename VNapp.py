@@ -116,8 +116,26 @@ if runmapperplus:
         X=data
     #submit=False
     #with st.form("parameters"):
-    KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as event & column 2 as time", type=".csv")
+    KM_file = st.file_uploader("Kapplan Meier Analysis: Upload a 2 column file in CSV format with column 1 as time & column 2 as event", type=".csv")
+    if KM_file:
+        datacols2 = st.columns((1, 1, 1))
+        transpose2=datacols2[0].checkbox("Transpose Data", False)
+        head2=datacols2[1].checkbox("Contains Headers", False)
+        ids2=datacols2[2].checkbox("Contains Indices", False)
+            
+        df2=pd.read_csv(KM_file,header=None)
 
+        if transpose:
+            df2=df2.T
+        if head:
+            df2 = df2.rename(columns=df.iloc[0]).drop(df.index[0])
+        if ids:
+            df2=df2.set_index(df.columns.tolist()[0])
+        st.write('### Kapplan Meier Data Uploaded')
+    
+        st.write(df2)
+        KMdata=np.array(df2)
+        KMdata=KMdata.astype(float)
     if uploaded_file or Sample_data:
         st.markdown("## Hyper Parameters")
 
@@ -157,38 +175,18 @@ if run:
     
     
     if KM_file:
-        datacols2 = st.columns((1, 1, 1))
-        transpose2=datacols2[0].checkbox("Transpose Data", False)
-        head2=datacols2[1].checkbox("Contains Headers", False)
-        ids2=datacols2[2].checkbox("Contains Indices", False)
-            
-        df2=pd.read_csv(KM_file,header=None)
-
-        if transpose:
-            df2=df2.T
-        if head:
-            df2 = df2.rename(columns=df.iloc[0]).drop(df.index[0])
-        if ids:
-            df2=df2.set_index(df.columns.tolist()[0])
-        st.write('### Data Uploaded')
-    
-        st.write(df2)
-        KMdata=np.array(df2)
-        KMdata=KMdata.astype(float)
         run2=st.form_submit_button(label="Plot Kaplan Meier Curves")
         if run2:
             Ss=[]
             tms=[]
             fig, ax = plt.subplots()
             for i in range(max(model.comm_id)+1):
-                [a,b]=KP_Survival(KMdata[model.comm_id==i,1],KMdata[model.comm_id==i,0])
+                [a,b]=KP_Survival(KMdata[model.comm_id==i,0],KMdata[model.comm_id==i,1])
                 print(len(a))
                 Ss.append(b)
                 tms.append(a)
                 ax.plot(tms[i],Ss[i],label="Community "+str(i))
                 ax.legend()
-                x = np.linspace(0, 10, 100)
-                y = np.sin(x)
                 
             st.pyplot(fig)
 
