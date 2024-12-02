@@ -175,18 +175,16 @@ if run:
     
     
     if KM_file:
-        run2=st.form_submit_button(label="Plot Kaplan Meier Curves")
-        if run2:
-            Ss=[]
-            tms=[]
-            fig, ax = plt.subplots()
-            for i in range(max(model.comm_id)+1):
-                [a,b]=KP_Survival(KMdata[model.comm_id==i,0],KMdata[model.comm_id==i,1])
-                print(len(a))
-                Ss.append(b)
-                tms.append(a)
-                ax.plot(tms[i],Ss[i],label="Community "+str(i))
-                ax.legend()
-                
-            st.pyplot(fig)
+        Ss=[]
+        tms=[]
+        fig, ax = plt.subplots()
+        for i in range(max(model.comm_id)+1):
+            [a,b]=KP_Survival(KMdata[model.comm_id==i,0],KMdata[model.comm_id==i,1])
+            print(len(a))
+            Ss.append(b)
+            tms.append(a)
+            ax.plot(tms[i],Ss[i],label="Community "+str(i))
+            ax.legend()
+            
+        st.pyplot(fig)
 
