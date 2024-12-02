@@ -128,7 +128,7 @@ if runmapperplus:
         if transpose2:
             df2=df2.T
         if head2:
-            df2 = df2.rename(columns=df.iloc[0]).drop(df2.index[0])
+            df2 = df2.rename(columns=df2.iloc[0]).drop(df2.index[0])
         if ids2:
             df2=df2.set_index(df2.columns.tolist()[0])
         st.write('### Kapplan Meier Data Uploaded')
