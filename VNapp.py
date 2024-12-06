@@ -33,7 +33,7 @@ def KP_Survival(date,event_yes):
 run=0
 st.write("""
 # VillageNet Clustering Ⓒ \n
-2023 Aditya Ballal, Gregory DePaul, Esha Datta & Leighton T. Izu
+2023 Aditya Ballal, Gregory DePaul, Esha Datta, Javier Lopez & Leighton T. Izu
 """)
 
 #more_information = st.checkbox("More Information", False)
