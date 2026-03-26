@@ -1,5 +1,5 @@
 import numpy as np
-import walk_likelihood as wl
+from . import walk_likelihood as wl
 from sklearn.cluster import KMeans
 from sklearn.metrics.cluster import normalized_mutual_info_score as nmi
 from sklearn.metrics import pairwise_distances
