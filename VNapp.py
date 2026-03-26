@@ -3,7 +3,7 @@ import numpy as np
 import sklearn
 from download_button_file import download_button
 import importlib
-from . import walk_likelihood as wl
+import .walk_likelihood as wl
 import VillageNet as VN
 from sklearn.datasets import load_digits
 import pandas as pd
