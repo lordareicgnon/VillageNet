@@ -1,6 +1,6 @@
 # VillageNet
 
-(c) 2024 <Author 1>, <Author 2>, <Author 3>
+(c) 2024 Aditya Ballal, Gregory A. DePaul, Asuka Hatano, Esha Datta, Erik Carlsson, Ye Chen-Izu, Javier E. L´opez and Leighton T. Izu
 
 VillageNet is a scalable graph-based clustering framework that combines fast prototype-based partitioning with walk-likelihood community detection. The algorithm first partitions the dataset into a fixed number of representative "villages" using K-Means clustering, constructs a sparse graph based on local neighborhood relationships between observations and villages, and then applies the Walk-Likelihood Community Finder (WLCF) to identify communities in the resulting graph.
 
@@ -8,14 +8,12 @@ The primary motivation behind VillageNet is to efficiently perform community det
 
 More information on Walk-Likelihood Community Finder (WLCF) can be found here:
 
-* Paper: <Paper Link>
-* GitHub: <GitHub Link>
+* Paper: https://journals.aps.org/prresearch/abstract/10.1103/PhysRevResearch.4.043117
+* GitHub: https://github.com/lordareicgnon/Walk_likelihood
 
 More information about VillageNet can be found here:
 
-* Paper: <Paper Link>
-* Demo: <Demo Link>
-* GitHub: <Repository Link>
+* Streamlit App: https://villagenet.streamlit.app/
 
 # Installation
 
@@ -26,8 +24,6 @@ Required modules:
 * numpy
 * scipy
 * scikit-learn
-* walk_likelihood
-* time
 
 Install the required dependencies using:
 
@@ -84,7 +80,7 @@ Fits the complete VillageNet pipeline to the input dataset. The procedure consis
 
 1. Optional feature normalization.
 2. K-Means village construction.
-3. Sparse graph construction.
+3. Graph construction.
 4. Community detection using Walk-Likelihood.
 5. Optional evaluation against reference labels.
 
@@ -93,8 +89,6 @@ The fitted object itself is returned.
 ## Parameters
 
 * **X (numpy array):** Dataset consisting of N observations and P features.
-* **comms (optional):** Desired number of communities or WLCF initialization parameter passed to the Walk-Likelihood algorithm.
-* **ref (optional):** Ground-truth labels used for evaluation via Normalized Mutual Information (NMI).
 
 ## Attributes
 
@@ -103,74 +97,6 @@ The fitted object itself is returned.
 **N:** Number of observations.
 
 **comm_id:** Community assignment for every observation.
-
----
-
-# kmeans
-
-```python
-def kmeans(self)
-```
-
-Performs the village construction step using K-Means clustering and computes the quantities required for sparse graph generation.
-
-## Attributes
-
-**labels:** Village assignment for every observation.
-
-**cluster_centers:** Coordinates of the village centroids.
-
-**ds:** Squared distances from every observation to every village center.
-
-**distance_matrix:** Pairwise distance matrix between village centers.
-
-**U:** Binary membership matrix indicating village assignments.
-
-**D:** Relative distance metric used for sparse neighborhood construction.
-
----
-
-# grapher
-
-```python
-def grapher(self)
-```
-
-Constructs the sparse village graph by assigning each village its nearest observations according to the computed distance metric.
-
-## Attributes
-
-**M:** Sparse observation-village membership matrix.
-
-**village_list:** List containing the observations assigned to each village.
-
----
-
-# get_communities
-
-```python
-def get_communities(self, thr_clusters=128, comms=None, **WLCF_args)
-```
-
-Constructs the village adjacency graph and performs community detection using the Walk-Likelihood Community Finder (WLCF).
-
-For large numbers of villages, a randomized initialization matrix is generated before optimization.
-
-## Parameters
-
-* **thr_clusters (int, default=128):** Threshold above which randomized initialization is used.
-* **comms (optional):** Number of desired communities or WLCF initialization parameter.
-* **WLCF_args:** Additional keyword arguments passed directly to the Walk-Likelihood implementation.
-
-## Attributes
-
-**A:** Village adjacency matrix.
-
-**comm_id:** Community assignment of every observation obtained by mapping village communities back to the original dataset.
-
-## Returns
-
-Returns the fitted Walk-Likelihood model.
 
 # Example
 
