@@ -140,5 +140,5 @@ array([3, 3, 1, 7, 2, 2, 0, 5, 5, 1,
        1, 3, 3, 0, 5, 2, 7, 4, 4, 1])
 ```
 
-The resulting `comm_id` array contains the community assignment for every observation in the original dataset.
+The resulting numpy array `model.comm_id` contains the community assignment for every observation in the original dataset.
 
