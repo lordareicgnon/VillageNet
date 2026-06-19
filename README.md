@@ -39,8 +39,7 @@ Here is an overview of the files included in the repository:
 
 1. `VillageNet.py`: Main implementation of the VillageNet algorithm.
 2. `walk_likelihood.py`: Walk-Likelihood Community Finder implementation.
-3. `example.ipynb`: Example notebook demonstrating VillageNet usage.
-4. `README.md`: Documentation and usage instructions.
+3. `README.md`: Documentation and usage instructions.
 
 # class VillageNet
 
@@ -107,7 +106,7 @@ Import the required packages:
 >>> from VillageNet import VillageNet
 ```
 
-Load a dataset:
+Load a dataset to be clustered:
 
 ```python
 >>> X = np.load("data.npy")
@@ -119,7 +118,7 @@ Create a VillageNet model:
 
 ```python
 >>> model = VillageNet(
-...     villages=60,
+...     villages=100,
 ...     neighbors=20,
 ...     normalize=1
 ... )
@@ -129,16 +128,16 @@ Fit the model:
 
 ```python
 >>> model.fit(X)
-time=0.12
-time=0.03
-time=0.08
 ```
 
 Retrieve community assignments:
 
 ```python
 >>> model.comm_id
-array([...])
+array([3, 3, 1, 7, 2, 2, 0, 5, 5, 1,
+       4, 4, 3, 7, 7, 2, 0, 0, 6, 6,
+       ...,
+       1, 3, 3, 0, 5, 2, 7, 4, 4, 1])
 ```
 
 The resulting `comm_id` array contains the community assignment for every observation in the original dataset.
