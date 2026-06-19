@@ -117,11 +117,7 @@ Load a dataset to be clustered:
 Create a VillageNet model:
 
 ```python
->>> model = VillageNet(
-...     villages=100,
-...     neighbors=20,
-...     normalize=1
-... )
+>>> model = VillageNet(villages=100, neighbors=20, normalize=1)
 ```
 
 Fit the model:
