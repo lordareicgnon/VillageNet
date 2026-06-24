@@ -33,14 +33,14 @@ def KP_Survival(date,event_yes):
 run=0
 st.write("""
 # VillageNet Clustering Ⓒ \n
-2023 Aditya Ballal, Gregory DePaul, Esha Datta, Javier Lopez & Leighton T. Izu
+2024 Aditya Ballal, Gregory A. DePaul, Asuka Hatano, Esha Datta, Erik Carlsson, Ye Chen-Izu, Javier E. L´opez and Leighton T. Izu
 """)
 
 #more_information = st.checkbox("More Information", False)
 
 with st.expander("More Information"):
     st.write("""
-    We present ”VillageNet Clustering,” a novel unsupervised clustering algorithm
+    We present ”VillageNet” a novel unsupervised clustering algorithm
     designed for effectively clustering complex manifold data.
     """)
 
